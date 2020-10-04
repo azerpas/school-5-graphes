@@ -19,7 +19,7 @@ print(file.read())
 * Arcs[]      
 `Le choix d’une structure de donnée plus efficace fera partie de votre évaluation.`      
 - [ ] Afficher le graphe sous forme de matrice d'adjacence et matrice de valeurs ou les deux combinées     
-![Un lien où il détaille comment bien afficher les matrices](http://math.mad.free.fr/depot/numpy/base.html)      
+[Un lien où il détaille comment bien afficher les matrices](http://math.mad.free.fr/depot/numpy/base.html)      
 - [ ] Fonction "Appliquer l'algorithme de 'Floyd-Warshall'" avec 'L' et 'P' affichés     
 - [ ] Fonction "Afficher si graphe contient algo absorbant"     
 - [ ] Fonction "Afficher les chemins de valeurs minimales"   
@@ -41,10 +41,11 @@ print(file.read())
 2 1 7
 ```     
 
-Ligne 1: Nombre de sommets = 4         
-Ligne 2: Nombre d'arcs = 5     
-Ligne 3 à n: Les arcs     
-Un arc (pour la première ligne):      
-1er terme: Extrémité initiale = 3     
-2e terme: Extrémité terminale = 1       
-3e terme: Valeur de l'arc = 25      
+**Ligne 1**: Nombre de sommets = 4         
+**Ligne 2**: Nombre d'arcs = 5     
+**Ligne 3 à n**: Les arcs     
+
+**Un arc** *(pour la première ligne)*:      
+**1er terme**: Extrémité initiale = 3     
+**2e terme**: Extrémité terminale = 1       
+**3e terme**: Valeur de l'arc = 25      
