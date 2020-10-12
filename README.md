@@ -1,5 +1,10 @@
 # PROJET THÉORIE DES GRAPHES
 
+## Initialiser le projet
+Après avoir cloné le projet:     
+- Aller dans setup.py, changer `name='projet'` par le nom du dossier parent     
+- `pip install -e .`
+
 ## Documentation du projet
 [Disponible dans `./docs/README.md` ou en cliquant ici](/docs/README.md)
 
