@@ -1,5 +1,8 @@
 # PROJET THÉORIE DES GRAPHES
 
+## Documentation du projet
+[Disponible dans `./docs/README.md` ou en cliquant ici](/docs/README.md)
+
 ## Illustration du projet
 ![Process](https://user-images.githubusercontent.com/19282069/95011857-15e00100-0634-11eb-9ca7-564b3127709c.png)
 
