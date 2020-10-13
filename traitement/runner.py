@@ -1,5 +1,6 @@
 import os.path
 from typing import TextIO
+from collections.abc import Iterable
 
 def ask():
     try:
@@ -18,7 +19,7 @@ def lire_fichier(graphe: int) -> TextIO:
         print(error)
         return ""
 
-def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs": any}:
+def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs": any}: # il faudra remplacer any par: typing.TypedDict
     structure = {
         "nb_sommets": 0,
         "nb_arcs": 0,
@@ -27,9 +28,9 @@ def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs":
     contenu = file.read().splitlines()
     structure["nb_sommets"] = contenu[0]
     structure["nb_arcs"] = contenu[1]
-    for arc in range(2, len(contenu)):
-        termes = contenu[arc].split(" ")
-        if(len(termes) != 3):
+    for arc in range(2, len(contenu)): # on itère dans le reste des lignes du fichier
+        termes = contenu[arc].split(" ") # on sépare la ligne par les espaces
+        if(len(termes) != 3): # s'il y a moins de 3 entiers, il manque un terme
             print("Pas assez de termes ligne: "+str(arc+1))
             continue
         structure["arcs"].append({"init": int(termes[0]), "terminale": int(termes[1]), "valeur": int(termes[2])})
