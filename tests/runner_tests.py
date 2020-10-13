@@ -8,7 +8,7 @@ class RunnerTest(unittest.TestCase):
         self.assertEqual(ask(), 1)
     
     def test_lire_fichier(self):
-        self.assertEqual(lire_fichier("do_not_delete"),"testing")
+        self.assertEqual(lire_fichier("do_not_delete").read(),"testing")
 
 if __name__ == '__main__':
     unittest.main()

@@ -2,7 +2,8 @@
 
 ## Initialiser le projet
 Après avoir cloné le projet:     
-- Aller dans setup.py, changer `name='projet'` par le nom du dossier parent     
+- `git clone https://github.com/azerpas/school-5-graphes.git projet && cd projet`
+- Aller dans setup.py, changer `name='projet'` par le nom du dossier parent (pas nécessaire si fait sur l'étape précédente)    
 - `pip install -e .`
 
 ## Documentation du projet
@@ -12,16 +13,16 @@ Après avoir cloné le projet:
 ![Process](https://user-images.githubusercontent.com/19282069/95011857-15e00100-0634-11eb-9ca7-564b3127709c.png)
 
 ## Étapes: 
-- [ ] Fonction "Demander à l'utilisateur quel graphe"    
+- [X] Fonction "Demander à l'utilisateur quel graphe"    
 ```python
 graphe = input("Entrez le numéro du graphe: "); 
 ```    
-- [ ] Fonction "Lire le fichier .txt"    
+- [X] Fonction "Lire le fichier .txt"    
 ```python
 file = open(graphe+".txt", "r")
 print(file.read())
 ```     
-- [ ] Enregistrer le graphe dans une structure de données    
+- [X] Enregistrer le graphe dans une structure de données    
 * Nombre de sommets      
 * Nombre d'arcs     
 * Arcs[]      
