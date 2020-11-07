@@ -4,7 +4,12 @@ from collections.abc import Iterable
 import numpy as np
 from enum import Enum
 
-def ask():
+def ask() -> int:
+    """Permet de demander le numéro d'un graphe
+
+    Returns:
+        int: Le numéro du graphe
+    """
     try:
         return int(input("Entrez le numéro du graphe: "))
     except ValueError as error:
@@ -13,6 +18,14 @@ def ask():
         ask()
 
 def lire_fichier(graphe: int) -> TextIO:
+    """Lecture d'un fichier contenu dans le dossier "data"
+
+    Args:
+        graphe (int): Le numéro du graphe
+
+    Returns:
+        TextIO: Un flux I/O (In/Out) permettant de lire un fichier par byte
+    """
     try:
         file = open(os.path.dirname(__file__)+"/../data/"+str(graphe)+".txt", "r")
         return file
@@ -22,6 +35,11 @@ def lire_fichier(graphe: int) -> TextIO:
         return ""
 
 def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs": any}: # il faudra remplacer any par: typing.TypedDict
+    """Création de la structure de données du graphe
+
+    Returns:
+        {"nb_sommets": int, "nb_arcs": int, "arcs": any}: La structure de données du graphe
+    """
     structure = {
         "nb_sommets": 0,
         "nb_arcs": 0,
@@ -40,6 +58,14 @@ def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs":
     return structure
 
 def creer_matrice_adja(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
+    """Crée la matrice adjacente du graphe à partir de sa structure de données
+
+    Args:
+        structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
+
+    Returns:
+        numpy.array: La matrice sous la forme d'une numpy array
+    """
     sommets = get_sommets(structure) 
     nb_sommets = len(sommets) # Nombre de sommets
     a = np.zeros((nb_sommets, nb_sommets), dtype=int) # Permet de remplir une matrice de 0 en fonction du nb de sommets
@@ -54,6 +80,14 @@ def creer_matrice_adja(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": an
     return a
 
 def creer_matrice_valeurs(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
+    """Crée la matrice de valeurs du graphe à partir de sa structure de données
+
+    Args:
+        structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
+
+    Returns:
+        numpy.array: La matrice sous la forme d'une numpy array
+    """
     POIDS_INFINI = 1000000 # Qu'on pourrait décrire comme "infini" en théorie des graphes
     sommets = get_sommets(structure)
     nb_sommets = len(sommets)
@@ -83,7 +117,7 @@ def get_sommets(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}, ord
     """Récupérer les sommets de la structure
 
     Args:
-        structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données
+        structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
         ordre (Ordre, optional): Trier dans un ordre croissant, décroissant ou simple. Se référer à la classe Ordre. Par défaut Ordre.SIMPLE.
 
     Returns:
