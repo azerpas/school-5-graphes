@@ -2,6 +2,7 @@ import os.path
 from typing import TextIO
 from collections.abc import Iterable
 import numpy as np
+from enum import Enum
 
 def ask():
     try:
@@ -41,10 +42,7 @@ def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs":
     #    for y in range(structure["nb_sommets"]): # Pour chaque colonne
 
 def creer_matrice_adja(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
-    sommets = [] # tous les sommets
-    for i in structure["arcs"]:
-        if not i["init"] in sommets:
-            sommets.append(i["init"])
+    sommets = get_sommets(structure)
     # sommets = [3,2,1,0]
     #   3 2 1 0
     # 3     1
@@ -66,3 +64,31 @@ def creer_matrice_adja(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": an
 
 def creer_matrice_valeurs(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
     return
+
+class Ordre(Enum):
+    """Permet de créer une énumération des différents ordres de triage
+
+    Args:
+        Enum (enum.Enum): Classe Enum du package enum
+    """
+    CROISSANT = "1"
+    DECROISSANT = "2"
+    SIMPLE = "3"
+
+def get_sommets(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}, ordre: Ordre = Ordre.SIMPLE) -> [any]:
+    """Récupérer les sommets de la structure
+
+    Args:
+        structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données
+        ordre (Ordre, optional): Trier dans un ordre croissant, décroissant ou simple. Se référer à la classe Ordre. Par défaut Ordre.SIMPLE.
+
+    Returns:
+        [any]: Une liste des int, string ou autre contenu comme sommets du graphe
+    """
+    sommets = []
+    for i in structure["arcs"]:
+        if not i["init"] in sommets:
+            sommets.append(i["init"])
+    if ordre == Ordre.CROISSANT: sommets.sort()
+    if ordre == Ordre.DECROISSANT: sommets.sort(reverse=True)
+    return sommets
