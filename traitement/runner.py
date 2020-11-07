@@ -36,34 +36,41 @@ def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs":
             print("Pas assez de termes ligne: "+str(arc+1))
             continue
         structure["arcs"].append({"init": int(termes[0]), "terminale": int(termes[1]), "valeur": int(termes[2])})
+    file.close()
     return structure
 
 #for x in range(structure["nb_sommets"]): # Pour chaque ligne
     #    for y in range(structure["nb_sommets"]): # Pour chaque colonne
 
 def creer_matrice_adja(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
-    sommets = get_sommets(structure)
-    # sommets = [3,2,1,0]
-    #   3 2 1 0
-    # 3     1
-    # 2 
-    # 1
-    # 0
-    a = np.zeros((4,4), dtype=int)
+    sommets = get_sommets(structure) 
+    nb_sommets = len(sommets) # Nombre de sommets
+    a = np.zeros((nb_sommets, nb_sommets), dtype=int) # Permet de remplir une matrice de 0 en fonction du nb de sommets
+
+    # Pour tous les arcs du graphe
     for i in structure["arcs"]:
-        sommet = i["init"]
-        # sommet = 3
-        ligne = sommets.index(sommet)
-        # ligne = 0
-        sommet = i["terminale"]
-        # sommet = 1
-        colonne = sommets.index(sommet)
-        # colonne = 2
-        a[ligne][colonne] = 1
-        # a[0][2]    
+        sommet = i["init"] # On récupère le sommet associé à la valeur initiale
+        ligne = sommets.index(sommet) # On récupère son index (sa ligne) dans la liste sommets 
+        sommet = i["terminale"] # On récupère le sommet associé à la valeur terminale
+        colonne = sommets.index(sommet) # On récupère son index (sa colonne) dans la liste sommets
+        a[ligne][colonne] = 1 # On attribue 1 à la valeur de la matrice
+    return a
 
 def creer_matrice_valeurs(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
-    return
+    POIDS_INFINI = 1000000 # Qu'on pourrait décrire comme "infini" en théorie des graphes
+    sommets = get_sommets(structure)
+    nb_sommets = len(sommets)
+    a = np.full((nb_sommets, nb_sommets), POIDS_INFINI) # On initialise la matrice de valeurs "infinies"
+
+    # Pour tous les arcs du graphe
+    for i in structure["arcs"]:
+        sommet = i["init"] # On récupère le sommet associé à la valeur initiale
+        ligne = sommets.index(sommet) # On récupère son index (sa ligne) dans la liste sommets
+        sommet = i["terminale"] # On récupère le sommet associé à la valeur terminale
+        colonne = sommets.index(sommet) # On récupère son index (sa colonne) dans la liste sommets
+        poids = i["valeur"]
+        a[ligne][colonne] = poids # On attribue "poids" à la valeur de la matrice
+    return a
 
 class Ordre(Enum):
     """Permet de créer une énumération des différents ordres de triage

@@ -1,10 +1,19 @@
 # PROJET THÉORIE DES GRAPHES
 
 ## Initialiser le projet
+#### Requis
+- Python 3.8 (Typings)
+- PIP pour Python 3.8
+#### Étapes
+- Cloner le projet depuis Github
 Après avoir cloné le projet:     
 - `git clone https://github.com/azerpas/school-5-graphes.git projet && cd projet`
 - Aller dans setup.py, changer `name='projet'` par le nom du dossier parent (pas nécessaire si fait sur l'étape précédente)    
-- `pip install -e .`
+- `python3 -m pip install -e .`
+- `python3 -m pip install -r requirements.txt`
+
+## Tests unitaires
+`python3 -m unittest tests/runner_tests.py`
 
 ## Documentation du projet
 [Disponible dans `./docs/README.md` ou en cliquant ici](/docs/README.md)

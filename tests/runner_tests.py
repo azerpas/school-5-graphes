@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch
-from traitement.runner import ask, lire_fichier
+from traitement.runner import ask, lire_fichier, creer_matrice_adja
+import numpy as np
 
 class RunnerTest(unittest.TestCase):
     @patch('builtins.input', return_value="1")
@@ -8,7 +9,21 @@ class RunnerTest(unittest.TestCase):
         self.assertEqual(ask(), 1)
     
     def test_lire_fichier(self):
-        self.assertEqual(lire_fichier("do_not_delete").read(),"testing")
+        file = lire_fichier("do_not_delete")
+        self.assertEqual(file.read(),"testing")
+        file.close()
+    
+    def test_matrice_adjacente(self):
+        a = np.array([[0, 1, 0, 0],
+                    [0, 0, 0, 1],
+                    [0, 1, 0, 1],
+                    [0, 1, 0, 0]])
+        structure = {'nb_sommets': 4, 'nb_arcs': 5, 'arcs': [{'init': 3, 'terminale': 1, 'valeur': 25}, {'init': 1, 'terminale': 0, 'valeur': 12}, {'init': 2, 'terminale': 0, 'valeur': -5}, {'init': 0, 'terminale': 1, 'valeur': 0}, {'init': 2, 'terminale': 1, 'valeur': 7}]}
+        b = creer_matrice_adja(structure)
+        self.assertEqual(a.all(),b.all())
+
+    def test_matrice_valeurs(self):
+        return
 
 if __name__ == '__main__':
     unittest.main()
