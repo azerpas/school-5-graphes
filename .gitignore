@@ -5,3 +5,6 @@
 # Python
 *.egg-info
 *.cpython*
+
+# VS
+.vscode

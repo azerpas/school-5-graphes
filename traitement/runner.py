@@ -1,6 +1,7 @@
 import os.path
 from typing import TextIO
 from collections.abc import Iterable
+import numpy as np
 
 def ask():
     try:
@@ -35,3 +36,33 @@ def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs":
             continue
         structure["arcs"].append({"init": int(termes[0]), "terminale": int(termes[1]), "valeur": int(termes[2])})
     return structure
+
+#for x in range(structure["nb_sommets"]): # Pour chaque ligne
+    #    for y in range(structure["nb_sommets"]): # Pour chaque colonne
+
+def creer_matrice_adja(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
+    sommets = [] # toutes les sommets
+    for i in structure["arcs"]:
+        if not i["init"] in sommets:
+            sommets.append(i["init"])
+    # sommets = [3,2,1,0]
+    #   3 2 1 0
+    # 3     1
+    # 2 
+    # 1
+    # 0
+    a = np.zeros((4,4), dtype=int)
+    for i in structure["arcs"]:
+        sommet = i["init"]
+        # sommet = 3
+        ligne = sommets.index(sommet)
+        # ligne = 0
+        sommet = i["terminale"]
+        # sommet = 1
+        colonne = sommets.index(sommet)
+        # colonne = 2
+        a[ligne][colonne] = 1
+        # a[0][2]    
+
+def creer_matrice_valeurs(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
+    return
