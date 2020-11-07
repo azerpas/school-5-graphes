@@ -41,7 +41,7 @@ def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs":
     #    for y in range(structure["nb_sommets"]): # Pour chaque colonne
 
 def creer_matrice_adja(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
-    sommets = [] # toutes les sommets
+    sommets = [] # tous les sommets
     for i in structure["arcs"]:
         if not i["init"] in sommets:
             sommets.append(i["init"])
