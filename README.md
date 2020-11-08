@@ -38,7 +38,7 @@ print(file.read())
 `Le choix d’une structure de donnée plus efficace fera partie de votre évaluation.`      
 - [X] Afficher le graphe sous forme de matrice d'adjacence et matrice de valeurs ou les deux combinées     
 [Un lien où il détaille comment bien afficher les matrices](http://math.mad.free.fr/depot/numpy/base.html)      
-- [ ] Fonction "Appliquer l'algorithme de 'Floyd-Warshall'" avec 'L' et 'P' affichés     
+- [X] Fonction "Appliquer l'algorithme de 'Floyd-Warshall'" avec 'L' et 'P' affichés     
 - [ ] Fonction "Afficher si graphe contient algo absorbant"     
 - [ ] Fonction "Afficher les chemins de valeurs minimales"   
 

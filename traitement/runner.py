@@ -130,3 +130,58 @@ def get_sommets(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}, ord
     if ordre == Ordre.CROISSANT: sommets.sort()
     if ordre == Ordre.DECROISSANT: sommets.sort(reverse=True)
     return sommets
+
+def creer_P(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
+    """Permet la création de la matrice P qui sert à l'algorithme de Floyd Warshall
+
+    Args:
+        structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
+
+    Returns:
+        matrice (4x4): Matrice P du graphe
+    """
+    sommets = get_sommets(structure)
+    nb_sommets = len(sommets)
+    a = np.zeros((nb_sommets, nb_sommets), dtype=int)
+    for i in range(nb_sommets):
+        for j in range(nb_sommets):
+            a[i][j] = sommets[i]
+    return a
+
+def creer_L(matrice):
+    """Permet la création de la matrice L qui sert à l'algorithme de Floyd Warshall
+
+    Args:
+        matrice (4x4): Matrice 4x4 du graphe
+
+    Returns:
+        matrice (4x4): Matrice L du graphe
+    """
+    r,c = matrice.shape
+    for i in range(r):
+        for j in range(r):
+            if(i == j):
+                matrice[i][j] = 0
+    return matrice
+
+def floyd_warshall(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
+    """Applique l'algorithme de Floyd Warshall
+
+    Args:
+        structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
+    """
+    sommets = get_sommets(structure)
+    nb_sommets = len(sommets)
+    mat_valeurs = creer_matrice_valeurs(structure)
+    L = creer_L(mat_valeurs)
+    P = creer_P(structure)
+    for k in range(nb_sommets):
+        for i in range(nb_sommets):
+            for j in range(nb_sommets):
+                if (L[i][k] + L[k][j]) < L[i][j]:
+                    L[i][j] = L[i][k] + L[k][j]
+                    P[i][j] = P[k][j]
+    print(L)
+    print(P)
+
+
