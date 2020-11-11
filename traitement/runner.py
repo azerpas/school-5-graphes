@@ -9,6 +9,8 @@ from datetime import datetime
 def log(string: any):
     """Remplace la fonction print en permettant l'ajout du print dans un fichier .txt
 
+    Author: @azerpas
+
     Args:
         string (any): n'importe quel type d'objet
 
@@ -41,6 +43,8 @@ def ask() -> int:
 def lire_fichier(graphe: int) -> TextIO:
     """Lecture d'un fichier contenu dans le dossier "data"
 
+    Author: @azerpas
+
     Args:
         graphe (int): Le numéro du graphe
 
@@ -57,6 +61,8 @@ def lire_fichier(graphe: int) -> TextIO:
 
 def enregistrer_dans_fichier(string: str) -> bool:
     """Permet d'enregistrer un string dans un fichier
+
+    Author: @azerpas
 
     Args:
         string (str): la chaîne de caractères à enregistrer 
@@ -101,6 +107,8 @@ def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs":
 def creer_matrice_adja(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
     """Crée la matrice adjacente du graphe à partir de sa structure de données
 
+    Author: @azerpas
+
     Args:
         structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
 
@@ -122,6 +130,8 @@ def creer_matrice_adja(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": an
 
 def creer_matrice_valeurs(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
     """Crée la matrice de valeurs du graphe à partir de sa structure de données
+
+    Author: @azerpas
 
     Args:
         structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
@@ -147,6 +157,8 @@ def creer_matrice_valeurs(structure: {"nb_sommets": int, "nb_arcs": int, "arcs":
 class Ordre(Enum):
     """Permet de créer une énumération des différents ordres de triage
 
+    Author: @azerpas
+
     Args:
         Enum (enum.Enum): Classe Enum du package enum
     """
@@ -156,6 +168,8 @@ class Ordre(Enum):
 
 def get_sommets(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}, ordre: Ordre = Ordre.SIMPLE) -> [any]:
     """Récupérer les sommets de la structure
+
+    Author: @azerpas
 
     Args:
         structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
@@ -175,6 +189,8 @@ def get_sommets(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}, ord
 def creer_P(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
     """Permet la création de la matrice P qui sert à l'algorithme de Floyd Warshall
 
+    Author: @azerpas
+
     Args:
         structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
 
@@ -192,6 +208,8 @@ def creer_P(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
 def creer_L(matrice):
     """Permet la création de la matrice L qui sert à l'algorithme de Floyd Warshall
 
+    Author: @azerpas
+
     Args:
         matrice (4x4): Matrice 4x4 du graphe
 
@@ -206,6 +224,16 @@ def creer_L(matrice):
     return matrice
 
 def has_circuit_absorbant(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}) -> bool:
+    """Retourne si la structure contient un circuit absorbant
+
+    Author: @azerpas
+
+    Args:
+        structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
+
+    Returns:
+        bool: Contient ou non un circuit absorbant
+    """
     for i in structure["arcs"]:
         if int(i["valeur"]) < 0:
             return True
@@ -213,6 +241,8 @@ def has_circuit_absorbant(structure: {"nb_sommets": int, "nb_arcs": int, "arcs":
 
 def floyd_warshall(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
     """Applique l'algorithme de Floyd Warshall
+
+    Author: @azerpas
 
     Args:
         structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
