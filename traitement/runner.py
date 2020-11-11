@@ -2,6 +2,7 @@ import os.path
 from typing import TextIO
 from collections.abc import Iterable
 import numpy as np
+import pandas as pd
 from enum import Enum
 from datetime import datetime
 
@@ -15,6 +16,7 @@ def log(string: any):
         Exception: Impossible de sauvegarder dans le fichier
     """
     print(string)
+    print()
     try:
         b = enregistrer_dans_fichier(str(string))
         if not b:
@@ -203,6 +205,12 @@ def creer_L(matrice):
                 matrice[i][j] = 0
     return matrice
 
+def has_circuit_absorbant(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}) -> bool:
+    for i in structure["arcs"]:
+        if int(i["valeur"]) < 0:
+            return True
+    return False
+
 def floyd_warshall(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
     """Applique l'algorithme de Floyd Warshall
 
@@ -224,7 +232,6 @@ def floyd_warshall(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
     log(P)
 
 def main():
-    log("Bonjour !")
     choice = ask()
     log("Vous avez choisi le graphe: "+str(choice))
     log("Lecture du fichier "+str(choice)+".txt")
@@ -243,6 +250,11 @@ def main():
     log(b)
     log("Exécution de Floyd Marshall...")
     f = floyd_warshall(structure)
+    absorbant = has_circuit_absorbant(structure)
+    if(absorbant):
+        log("Présence d'un circuit absorbant, merci de choisir un autre graphe.")
+        return main()
+    
 
 if __name__ == '__main__':
     main()
