@@ -3,6 +3,25 @@ from typing import TextIO
 from collections.abc import Iterable
 import numpy as np
 from enum import Enum
+from datetime import datetime
+
+def log(string: any):
+    """Remplace la fonction print en permettant l'ajout du print dans un fichier .txt
+
+    Args:
+        string (any): n'importe quel type d'objet
+
+    Raises:
+        Exception: Impossible de sauvegarder dans le fichier
+    """
+    print(string)
+    try:
+        b = enregistrer_dans_fichier(str(string))
+        if not b:
+            raise Exception()
+    except Exception:
+        print("Erreur lors de la sauvegarde des logs dans le fichier .txt")
+    
 
 def ask() -> int:
     """Permet de demander le numéro d'un graphe
@@ -13,8 +32,8 @@ def ask() -> int:
     try:
         return int(input("Entrez le numéro du graphe: "))
     except ValueError as error:
-        print("Entrez un nombre entier valide.")
-        print(error)
+        log("Entrez un nombre entier valide.")
+        log(error)
         ask()
 
 def lire_fichier(graphe: int) -> TextIO:
@@ -30,9 +49,29 @@ def lire_fichier(graphe: int) -> TextIO:
         file = open(os.path.dirname(__file__)+"/../data/"+str(graphe)+".txt", "r")
         return file
     except FileNotFoundError as error:
-        print("Vérifiez que "+str(graphe)+".txt existe bien dans le dossier ~/data/")
-        print(error)
-        return ""
+        log("Vérifiez que "+str(graphe)+".txt existe bien dans le dossier ~/data/")
+        log(error)
+        raise(error)
+
+def enregistrer_dans_fichier(string: str) -> bool:
+    """Permet d'enregistrer un string dans un fichier
+
+    Args:
+        string (str): la chaîne de caractères à enregistrer 
+
+    Returns:
+        bool: True si succès, False si erreur
+    """
+    try:
+        heure_minute_secondes = datetime.now().strftime("%H.%M.%S")
+        file = open(os.path.dirname(__file__)+"/../data/log"+str(heure_minute_secondes)+".txt", "a")
+        file.write(string+"\n\n")
+        file.close()
+        return True
+    except FileNotFoundError as error:
+        log("Vérifiez que le dossier ~/data/ existe")
+        log(error)
+        return False
 
 def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs": any}: # il faudra remplacer any par: typing.TypedDict
     """Création de la structure de données du graphe
@@ -51,7 +90,7 @@ def creer_structure(file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs":
     for arc in range(2, len(contenu)): # on itère dans le reste des lignes du fichier
         termes = contenu[arc].split(" ") # on sépare la ligne par les espaces
         if(len(termes) != 3): # s'il y a moins de 3 entiers, il manque un terme
-            print("Pas assez de termes ligne: "+str(arc+1))
+            log("Pas assez de termes ligne: "+str(arc+1))
             continue
         structure["arcs"].append({"init": int(termes[0]), "terminale": int(termes[1]), "valeur": int(termes[2])})
     file.close()
@@ -181,7 +220,29 @@ def floyd_warshall(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
                 if (L[i][k] + L[k][j]) < L[i][j]:
                     L[i][j] = L[i][k] + L[k][j]
                     P[i][j] = P[k][j]
-    print(L)
-    print(P)
+    log(L)
+    log(P)
 
+def main():
+    log("Bonjour !")
+    choice = ask()
+    log("Vous avez choisi le graphe: "+str(choice))
+    log("Lecture du fichier "+str(choice)+".txt")
+    try:
+        file = lire_fichier(choice)
+    except Exception as e:
+        log("Erreur fichier: ")
+        log(e)
+        return main()
+    log("Création de la structure")
+    structure = creer_structure(file)
+    log("Création des matrices")
+    a = creer_matrice_adja(structure)
+    b = creer_matrice_valeurs(structure)
+    log(a)
+    log(b)
+    log("Exécution de Floyd Marshall...")
+    f = floyd_warshall(structure)
 
+if __name__ == '__main__':
+    main()
