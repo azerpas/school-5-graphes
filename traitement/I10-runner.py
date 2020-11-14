@@ -225,22 +225,6 @@ class Runner:
                     matrice[i][j] = 0
         return matrice
 
-    def has_circuit_absorbant(self, structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}) -> bool:
-        """Retourne si la structure contient un circuit absorbant
-
-        Author: @azerpas
-
-        Args:
-            structure ({"nb_sommets": int, "nb_arcs": int, "arcs": any}): La structure de données du graphe
-
-        Returns:
-            bool: Contient ou non un circuit absorbant
-        """
-        for i in structure["arcs"]:
-            if int(i["valeur"]) < 0:
-                return True
-        return False
-
     def floyd_warshall(self, structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
         """Applique l'algorithme de Floyd Warshall
 
@@ -260,8 +244,24 @@ class Runner:
                     if (L[i][k] + L[k][j]) < L[i][j]:
                         L[i][j] = L[i][k] + L[k][j]
                         P[i][j] = P[k][j]
-        self.log(L)
-        self.log(P)
+        return L
+    
+    def has_circuit_absorbant(self, matrice):
+        """Retourne si la structure contient un circuit absorbant
+
+        Author: @azerpas
+
+        Args:
+            matrice (n*n matrice): La matrice
+
+        Returns:
+            bool: Contient ou non un circuit absorbant
+        """
+        r,c = matrice.shape
+        for i in range(r):
+            if matrice[i][i] < 0:
+                return True
+        return False
 
 def ask() -> int:
     """Permet de demander le numéro d'un graphe
@@ -304,12 +304,12 @@ def main():
     r.log(b)
     # Éxécution de Floyd Warshall
     r.log("Exécution de Floyd Warshall...")
-    absorbant = r.has_circuit_absorbant(structure)
-    if(absorbant): # Si présence d'un circuit absorbant
+    L = r.floyd_warshall(structure)
+    if(r.has_circuit_absorbant(L)): # Circuit absorbant
         r.log("Présence d'un circuit absorbant, merci de choisir un autre graphe.")
-    else: # Sinon affichage des chemins
+    else:
         r.log("Affichage des chemins")
-        r.floyd_warshall(structure)
+        r.log(L)
     exit = None
     # Autre graphe?
     while exit != "y" and exit != "n" and exit != "yes" and exit != "no":
