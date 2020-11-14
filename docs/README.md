@@ -32,7 +32,7 @@ Après avoir cloné le projet:
 - Vérifier que l'installation est bien complète
 - Vérifier qu'on est bien dans le répertoire parent (qui contient `setup.py`, `LICENSE`...)
 - `cd traitement`
-- `python3 runner.py`
+- `python3 I10-runner.py`
 
 ## Structure du projet
 ```
