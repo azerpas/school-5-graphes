@@ -19,7 +19,14 @@ class Ordre(Enum):
     SIMPLE = "3"
 
 class Runner:
+    """Classe principale
+    """
     def __init__(self, graphe: int):
+        """Initialisation d'une instance
+
+        Args:
+            graphe (int): numéro du graphe
+        """
         self.graphe = graphe
 
     def log(self, string: any):

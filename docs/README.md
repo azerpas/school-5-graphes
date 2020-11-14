@@ -9,6 +9,7 @@
 - [Logs](#logs)
 - [Tests unitaires](#tests-unitaires)
 - [Compiler](#compiler)
+- [Documentation interne](#documentation-interne)
 
 ## Pré-requis
 #### Requis
@@ -106,3 +107,10 @@ Tous les logs se situent dans `./data/` avec pour format `graphe_[numero]-log[he
 - Sous Windows
     - `python3 setup.py build --plat-name=win-amd64`
 - Le résultat sera stocké dans `./build` et dans `./dist`
+
+## Documentation interne
+Toute la documentation du code est faite grâce à Docstring pour Python3.8 sous la forme:
+- Description
+- @Author: auteur
+- @Args: arguments
+- @Returns: retour
