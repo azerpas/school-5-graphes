@@ -87,6 +87,8 @@ class Runner:
     def creer_structure(self, file: TextIO) -> {"nb_sommets": int, "nb_arcs": int, "arcs": any}: # il faudra remplacer any par: typing.TypedDict
         """Création de la structure de données du graphe
 
+        Author: @azerpas
+
         Returns:
             {"nb_sommets": int, "nb_arcs": int, "arcs": any}: La structure de données du graphe
         """
@@ -256,6 +258,8 @@ class Runner:
 
 def ask() -> int:
     """Permet de demander le numéro d'un graphe
+
+    Author: @azerpas
 
     Returns:
         int: Le numéro du graphe

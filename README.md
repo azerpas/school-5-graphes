@@ -1,5 +1,8 @@
 # PROJET THÉORIE DES GRAPHES
 
+**Lien du GitHub**    
+https://github.com/azerpas/school-5-graphes/ 
+
 ## Documentation du projet
 [Disponible dans `./docs/README.md` ou en cliquant ici](/docs/README.md)
 

@@ -47,11 +47,12 @@ Après avoir cloné le projet:
 │
 ├── traitement/ # Code
 │   ├── __init__.py
-│   └── runner.py
+│   └── I10-runner.py # Notre fichier principal
 │
 ├── data/ # Données
 │   ├── 1.txt # Graphe 1
 │   ├── 2.txt # Graphe 2
+│   ├── graphe_9-log12.03.13.txt # Log du graphe 9 à 12h03
 │   └── ...
 │
 ├── tests/ # Tests unitaires
@@ -59,6 +60,8 @@ Après avoir cloné le projet:
 │
 ├── .gitignore # fichiers ignorés dans git
 ├── LICENSE
+├── setup.py # Le fichier setup
+├── requirements.txt # Tous les packages nécessaires à l'exécution du code
 └── README.md
 ```
 
