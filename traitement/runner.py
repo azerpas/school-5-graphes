@@ -262,9 +262,14 @@ def floyd_warshall(structure: {"nb_sommets": int, "nb_arcs": int, "arcs": any}):
     log(P)
 
 def main():
+    # Début
+    print("Lisez bien le README.md")
+    print("Pour quitter le programme à tout moment, faites Control+C sur votre clavier.")
+    # Choix d'un graphe
     choice = ask()
     log("Vous avez choisi le graphe: "+str(choice))
     log("Lecture du fichier "+str(choice)+".txt")
+    # Lecture d'un fichier, stockage en mémoire
     try:
         file = lire_fichier(choice)
     except Exception as e:
@@ -276,14 +281,25 @@ def main():
     log("Création des matrices")
     a = creer_matrice_adja(structure)
     b = creer_matrice_valeurs(structure)
+    # Affichage du graphe, matrices de valeurs et adjacentes 
     log(a)
     log(b)
-    log("Exécution de Floyd Marshall...")
-    f = floyd_warshall(structure)
+    # Éxécution de Floyd Warshall
+    log("Exécution de Floyd Warshall...")
     absorbant = has_circuit_absorbant(structure)
-    if(absorbant):
+    if(absorbant): # Si présence d'un circuit absorbant
         log("Présence d'un circuit absorbant, merci de choisir un autre graphe.")
+    else: # Sinon affichage des chemins
+        log("Affichage des chemins")
+        floyd_warshall(structure)
+    exit = None
+    # Autre graphe?
+    while exit != "y" or exit != "n" or exit != "yes" or exit != "no":
+        exit = input("Continuer sur un autre graphe? [Y(es)/N(o)]: ").lower().strip()
+    if exit == "y" or exit == "yes":
         return main()
+    else:
+        exit(0)
     
 
 if __name__ == '__main__':

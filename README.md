@@ -1,27 +1,18 @@
 # PROJET THÉORIE DES GRAPHES
 
+## Documentation du projet
+[Disponible dans `./docs/README.md` ou en cliquant ici](/docs/README.md)
+
 ## Initialiser le projet
-#### Requis
-- Python 3.8 (Typings)
-- PIP pour Python 3.8
-#### Étapes
-- Cloner le projet depuis Github
-Après avoir cloné le projet:     
-- `git clone https://github.com/azerpas/school-5-graphes.git projet && cd projet`
-- Aller dans setup.py, changer `name='projet'` par le nom du dossier parent (pas nécessaire si fait sur l'étape précédente)    
-- `python3 -m pip install -e .`
-- `python3 -m pip install -r requirements.txt`
+[Consulter la documentation](/docs/README.md)
 
 ## Tests unitaires
 `python3 -m unittest tests/runner_tests.py`
 
-## Documentation du projet
-[Disponible dans `./docs/README.md` ou en cliquant ici](/docs/README.md)
-
 ## Illustration du projet
 ![Process](https://user-images.githubusercontent.com/19282069/95011857-15e00100-0634-11eb-9ca7-564b3127709c.png)
 
-## Étapes: 
+## Étapes (TODO): 
 - [X] Fonction "Demander à l'utilisateur quel graphe"    
 ```python
 graphe = input("Entrez le numéro du graphe: "); 
@@ -39,13 +30,13 @@ print(file.read())
 - [X] Afficher le graphe sous forme de matrice d'adjacence et matrice de valeurs ou les deux combinées     
 [Un lien où il détaille comment bien afficher les matrices](http://math.mad.free.fr/depot/numpy/base.html)      
 - [X] Fonction "Appliquer l'algorithme de 'Floyd-Warshall'" avec 'L' et 'P' affichés     
-- [ ] Fonction "Afficher si graphe contient algo absorbant"     
-- [ ] Fonction "Afficher les chemins de valeurs minimales"   
+- [X] Fonction "Afficher si graphe contient algo absorbant"     
+- [X] Fonction "Afficher les chemins de valeurs minimales"   
 
 ## Graphes à prendre en compte     
-- [ ] Graphes orientés      
-- [ ] Graphes valués (valeurs dans Z)    
-- [ ] Sommets (valeurs dans N)    
+- [X] Graphes orientés      
+- [X] Graphes valués (valeurs dans Z)    
+- [X] Sommets (valeurs dans N)    
 
 
 ## À tester     
