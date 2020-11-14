@@ -6,6 +6,7 @@
 - [Structure du projet](#structure-du-projet)
 - [Structure d'un graphe](#structure-dun-graphe)
 - [Tests unitaires](#tests-unitaires)
+- [Compiler](#compiler)
 
 ## Pré-requis
 #### Requis
@@ -83,3 +84,12 @@ Après avoir cloné le projet:
 
 ## Tests unitaires
 - `python3 -m unittest tests/runner_tests.py`
+
+## Compiler
+- [Référence python.org](https://docs.python.org/fr/3/distutils/builtdist.html)
+- Placez vous dans le dossier parent
+- Sous zip:
+    - `python3 setup.py bdist --format=zip`
+- Sous Windows
+    - `python3 setup.py build --plat-name=win-amd64`
+- Le résultat sera stocké dans `./build` et dans `./dist`
