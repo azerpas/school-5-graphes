@@ -300,7 +300,9 @@ def main():
     a = r.creer_matrice_adja(structure)
     b = r.creer_matrice_valeurs(structure)
     # Affichage du graphe, matrices de valeurs et adjacentes 
+    r.log("Matrice d'adjacence:")
     r.log(a)
+    r.log("Matrice de valeurs:")
     r.log(b)
     # Éxécution de Floyd Warshall
     r.log("Exécution de Floyd Warshall...")
@@ -308,7 +310,7 @@ def main():
     if(r.has_circuit_absorbant(L)): # Circuit absorbant
         r.log("Présence d'un circuit absorbant, merci de choisir un autre graphe.")
     else:
-        r.log("Affichage des chemins")
+        r.log("Affichage des chemins par la matrice L")
         r.log(L)
     exit = None
     # Autre graphe?
