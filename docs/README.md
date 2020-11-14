@@ -5,6 +5,8 @@
 - [Éxecuter le code](#éxecuter-le-code)
 - [Structure du projet](#structure-du-projet)
 - [Structure d'un graphe](#structure-dun-graphe)
+- [Ajouter un graphe](#ajouter-un-graphe)
+- [Logs](#logs)
 - [Tests unitaires](#tests-unitaires)
 - [Compiler](#compiler)
 
@@ -81,6 +83,14 @@ Après avoir cloné le projet:
 0 1 0
 2 1 7
 ```
+
+## Ajouter un graphe
+- Créez un nouveau fichier .txt
+- Respectez la structure précédente
+- Enregistrez le dans `./data/` avec son numéro exclusif, ex: `12.txt`, `1.txt`, `1201.txt`
+
+## Logs
+Tous les logs se situent dans `./data/` avec pour format `graphe_[numero]-log[heure].[min].[sec]`
 
 ## Tests unitaires
 - `python3 -m unittest tests/runner_tests.py`
