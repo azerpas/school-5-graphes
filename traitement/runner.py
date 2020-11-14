@@ -173,6 +173,8 @@ class Runner:
         for i in structure["arcs"]:
             if not i["init"] in sommets:
                 sommets.append(i["init"])
+            if not i["terminale"] in sommets:
+                sommets.append(i["terminale"])
         if ordre == Ordre.CROISSANT: sommets.sort()
         if ordre == Ordre.DECROISSANT: sommets.sort(reverse=True)
         return sommets
